@@ -1,0 +1,39 @@
+.books {
+  padding: 40px;
+
+  &__list, &__hadiths {
+    display: grid;
+  }
+
+  &__list {
+    grid-template-columns: auto auto auto;
+    gap: 8px;
+  }
+
+  &__card, &__hadiths, &__hadith {
+    padding: 24px;
+  }
+  
+  &__card, &__hadith {
+    background-color: white;
+    border: none;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+
+  &__card:hover {
+    cursor: pointer;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; 
+  }
+
+  &__hadiths {
+    gap: 24px;
+  }
+
+  &__hadith-text {
+    text-align: right;
+    font-family: 'Uthman';
+    line-height: 2;
+    font-size: 18px;
+  }
+}

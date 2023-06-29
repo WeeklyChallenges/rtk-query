@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "Uthman";
+  src: local("Uthman"),
+  url("./assets/UthmanTN1B\ Ver07.otf") format("truetype");
+  font-weight: bold;
+}
