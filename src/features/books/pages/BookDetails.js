@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Hadith } from '../components/Hadith'
+import { Hadith } from '../../hadiths/components/Hadith'
 
 export const BookDetails = () => {
   const book = useSelector((state) => state.books.selectedBook)
@@ -10,7 +10,7 @@ export const BookDetails = () => {
       {book.name && <h3>Book: {book.name}</h3>}
 
       <div className='books__hadiths'>
-        {book.hadiths?.map((hadith) => <Hadith key={hadith.id} {...hadith} />)}
+        {book.hadiths?.map(({ hadithId }) => <Hadith key={hadithId} id={hadithId} />)}
       </div>
     </div>
   )

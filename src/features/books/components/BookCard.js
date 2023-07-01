@@ -1,20 +1,15 @@
 import React from 'react'
-import { getBookDetails } from '../../../network/lib/books';
 import { useDispatch } from 'react-redux';
-import { fetchBookDetailsSuccess } from '../booksSlice';
+import { selectBook } from '../../../redux/features/booksSlice';
 
-export const BookCard = ({ id, name }) => {
+export const BookCard = ({ book }) => {
   const dispatch = useDispatch();
 
-  const handleClickOnBookCard = async () => {
-    const bookDetails = await getBookDetails(id);
-
-    if (bookDetails) {
-      dispatch(fetchBookDetailsSuccess(bookDetails));
-    }
+  const handleClickOnBookCard = () => {
+    dispatch(selectBook(book));
   }
 
   return (
-    <button className='books__card' onClick={handleClickOnBookCard}>{name}</button>
+    <button className='books__card' onClick={handleClickOnBookCard}>{book.name}</button>
   )
 }

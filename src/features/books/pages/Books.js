@@ -1,28 +1,25 @@
 import React, { useEffect } from 'react'
-import { getBooks } from '../../../network/lib/books';
-import { useDispatch, useSelector } from 'react-redux';
-import '../books.scss'
-import { fetchBooksSuccess } from '../booksSlice';
 import { BookCard } from '../components/BookCard';
+import { useGetBooksQuery } from '../../../redux/api';
+import '../books.scss'
+import { useDispatch } from 'react-redux';
+import { fetchBooksSuccess } from '../../../redux/features/booksSlice';
 
 export const Books = () => {
-  const list = useSelector((state) => state.books.list)
-  const dispatch = useDispatch()
+  const { data: booksList, isLoading } = useGetBooksQuery();
 
-  const fetchBooks = async () => {
-    const books = await getBooks();
-    books && dispatch(fetchBooksSuccess(books));
-  }
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchBooks();
-  }, []);
+    booksList && dispatch(fetchBooksSuccess(booksList));
+  }, [booksList]);
 
   return (
     <div className='books'>
       <h1>Books</h1>
+      {isLoading && <h4>Fetching books...</h4>}
       <div className='books__list'>
-        {list.map((book) => <BookCard key={book.id} {...book} />)}
+        {booksList?.map((book) => <BookCard key={book.id} book={book} />)}
       </div>
     </div>
   )
